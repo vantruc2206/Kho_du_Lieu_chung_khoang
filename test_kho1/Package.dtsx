@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/8/2026 12:08:57 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1066"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{934ADE65-5BB6-44F0-A200-1E97B2CE7002}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{52CBC47B-8367-41FA-83C8-BE26AB0D93AF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -183,28 +183,40 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost\SQLEXPRESS]"
+      DTS:refId="Package.ConnectionManagers[Kho_du_lieu]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{CDBC410C-CABE-406B-9B8B-9CF4C7BA0FC7}"
-      DTS:ObjectName="localhost\SQLEXPRESS">
+      DTS:DTSID="{2061D661-6A3F-4622-8543-845D60F2959B}"
+      DTS:ObjectName="Kho_du_lieu">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=Kho_du_lieu;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{CDBC410C-CABE-406B-9B8B-9CF4C7BA0FC7}localhost\SQLEXPRESS;Use Encryption for Data=Optional;Trust Server Certificate=True;" />
+          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;User ID=;Initial Catalog=DW_ChungKhoan;Provider=MSOLEDBSQL19.1;Persist Security Info=False;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{2061D661-6A3F-4622-8543-845D60F2959B}Data Connection;Initial File Name=;Use Encryption for Data=optional;Trust Server Certificate=True;Server SPN=;Authentication=;Access Token=;Host Name In Certificate=;Server Certificate=;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CDBC410C-CABE-406B-9B8B-9CF4C7BA0FC7}"
+      DTS:ObjectName="staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=Kho_du_lieu_staging;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{CDBC410C-CABE-406B-9B8B-9CF4C7BA0FC7}localhost\SQLEXPRESS;Use Encryption for Data=Optional;Trust Server Certificate=True;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\Dim_Date"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{067DC034-8E40-4166-AA5C-CF6782D97F82}"
+      DTS:DTSID="{3454C34D-A356-40DD-94C2-A29C393C0822}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="Dim_Date"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -212,7 +224,687 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\csv 2002-2025"
+              refId="Package\Dim_Date\chiều thời gian"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="chiều thời gian"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Date\chiều thời gian.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Kho_du_lieu]"
+                  connectionManagerRefId="Package.ConnectionManagers[Kho_du_lieu]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[year_num]"
+                      cachedDataType="i4"
+                      cachedName="year_num"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[year_num]"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[year_num]" />
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[month_num]"
+                      cachedDataType="i4"
+                      cachedName="month_num"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[month_num]"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[month_num]" />
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[quarter_num]"
+                      cachedDataType="i4"
+                      cachedName="quarter_num"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[quarter_num]"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[quarter_num]" />
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[day_of_week]"
+                      cachedDataType="i4"
+                      cachedName="day_of_week"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[day_of_week]" />
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[date_key]"
+                      cachedDataType="i4"
+                      cachedName="date_key"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[date_key]" />
+                    <inputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].Columns[trade_date]"
+                      cachedDataType="dbDate"
+                      cachedName="trade_date"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[full_date]"
+                      lineageId="Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[date_key]"
+                      dataType="i4"
+                      name="date_key" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[full_date]"
+                      dataType="dbDate"
+                      name="full_date" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[day_of_week]"
+                      dataType="ui1"
+                      name="day_of_week" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[month_num]"
+                      dataType="ui1"
+                      name="month_num" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[quarter_num]"
+                      dataType="ui1"
+                      name="quarter_num" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input].ExternalColumns[year_num]"
+                      dataType="i2"
+                      name="year_num" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Date\chiều thời gian.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\chiều thời gian.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Date\chiều thời gian.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\chiều thời gian.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Date\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Dim_Date\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Date\Derived Column.Inputs[Derived Column Input].Columns[trade_date]"
+                      cachedDataType="dbDate"
+                      cachedName="trade_date"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Dim_Date\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[year_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[year_num]"
+                      name="year_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(trade_date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[month_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[month_num]"
+                      name="month_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[MONTH](#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(trade_date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[quarter_num]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[quarter_num]"
+                      name="quarter_num"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("quarter",#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("quarter",trade_date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[day_of_week]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[day_of_week]"
+                      name="day_of_week"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[DATEPART]("weekday",#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DATEPART("weekday",trade_date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[date_key]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output].Columns[date_key]"
+                      name="date_key"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]}) * 10000 + [MONTH](#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]}) * 100 + [DAY](#{Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(trade_date) * 10000 + MONTH(trade_date) * 100 + DAY(trade_date)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Dim_Date\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Date\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Date\dữ liệu giao dich"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="dữ liệu giao dich"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Stg_Price]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Dim_Date\dữ liệu giao dich.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[trade_date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[trade_date]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[trade_date]"
+                      name="trade_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[open_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[open_price]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[open_price]"
+                      name="open_price"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[high_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[high_price]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[high_price]"
+                      name="high_price"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[low_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[low_price]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[low_price]"
+                      name="low_price"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[close_price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[close_price]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[close_price]"
+                      name="close_price"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[volume]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[volume]"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[volume]"
+                      name="volume"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[symbol]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[symbol]"
+                      length="10"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[symbol]"
+                      name="symbol"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[trade_date]"
+                      dataType="dbDate"
+                      name="trade_date" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[open_price]"
+                      dataType="numeric"
+                      name="open_price"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[high_price]"
+                      dataType="numeric"
+                      name="high_price"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[low_price]"
+                      dataType="numeric"
+                      name="low_price"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[close_price]"
+                      dataType="numeric"
+                      name="close_price"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[volume]"
+                      dataType="i8"
+                      name="volume" />
+                    <externalMetadataColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].ExternalColumns[symbol]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="symbol" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[trade_date]"
+                      dataType="dbDate"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[trade_date]"
+                      name="trade_date" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[open_price]"
+                      dataType="numeric"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[open_price]"
+                      name="open_price"
+                      precision="18"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[high_price]"
+                      dataType="numeric"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[high_price]"
+                      name="high_price"
+                      precision="18"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[low_price]"
+                      dataType="numeric"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[low_price]"
+                      name="low_price"
+                      precision="18"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[close_price]"
+                      dataType="numeric"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[close_price]"
+                      name="close_price"
+                      precision="18"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[volume]"
+                      dataType="i8"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[volume]"
+                      name="volume" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[symbol]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[symbol]"
+                      name="symbol" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Dim_Date\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Dim_Date\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Dim_Date\Sort.Inputs[Sort Input].Columns[trade_date]"
+                      cachedDataType="dbDate"
+                      cachedName="trade_date"
+                      lineageId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[trade_date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Dim_Date\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]"
+                      dataType="dbDate"
+                      lineageId="Package\Dim_Date\Sort.Outputs[Sort Output].Columns[trade_date]"
+                      name="trade_date"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output].Columns[trade_date]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Dim_Date.Paths[Derived Column Output]"
+              endId="Package\Dim_Date\chiều thời gian.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Dim_Date\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Dim_Date.Paths[OLE DB Source Output]"
+              endId="Package\Dim_Date\Sort.Inputs[Sort Input]"
+              name="OLE DB Source Output"
+              startId="Package\Dim_Date\dữ liệu giao dich.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Dim_Date.Paths[Sort Output]"
+              endId="Package\Dim_Date\Derived Column.Inputs[Derived Column Input]"
+              name="Sort Output"
+              startId="Package\Dim_Date\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{067DC034-8E40-4166-AA5C-CF6782D97F82}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\staging\csv 2002-2025"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -232,25 +924,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\csv 2002-2025.Connections[FlatFileConnection]"
+                  refId="Package\staging\csv 2002-2025.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output]"
+                  refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[time]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[time]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]"
                       name="time"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -265,14 +957,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[open]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[open]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]"
                       name="open"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -287,14 +979,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[high]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[high]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]"
                       name="high"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -309,14 +1001,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[low]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[low]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]"
                       name="low"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -331,14 +1023,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[close]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[close]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]"
                       name="close"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -353,14 +1045,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[volume]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[volume]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]"
                       name="volume"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -375,14 +1067,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]"
                       codePage="1252"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[symbol ]"
+                      externalMetadataColumnId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[symbol ]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]"
                       name="symbol "
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -400,43 +1092,43 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[time]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[time]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="time" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[open]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[open]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="open" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[high]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[high]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="high" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[low]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[low]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="low" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[close]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[close]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="close" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[volume]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[volume]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="volume" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[symbol ]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].ExternalColumns[symbol ]"
                       codePage="1252"
                       dataType="str"
                       length="50"
@@ -444,27 +1136,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output]"
+                  refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="65001"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -473,7 +1165,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\csv nghành"
+              refId="Package\staging\csv nghành"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -493,25 +1185,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\csv nghành.Connections[FlatFileConnection]"
+                  refId="Package\staging\csv nghành.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output]"
+                  refId="Package\staging\csv nghành.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]"
                       codePage="65001"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker_key]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker_key]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]"
                       name="ticker_key"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -526,13 +1218,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="IgnoreFailure"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker]"
                       name="ticker"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -547,13 +1239,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[company_name]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[company_name]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[company_name]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[company_name]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[company_name]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[company_name]"
                       name="company_name"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -568,13 +1260,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_vn]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_vn]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]"
                       name="sector_name_vn"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -589,13 +1281,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_en]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_en]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]"
                       name="sector_name_en"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -610,13 +1302,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_group]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_group]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]"
                       name="sector_group"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -631,13 +1323,13 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[risk_level]"
+                      externalMetadataColumnId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[risk_level]"
                       length="50"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]"
                       name="risk_level"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -655,65 +1347,65 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker_key]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker_key]"
                       codePage="65001"
                       dataType="str"
                       length="50"
                       name="ticker_key" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[ticker]"
                       dataType="wstr"
                       length="50"
                       name="ticker" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[company_name]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[company_name]"
                       dataType="wstr"
                       length="50"
                       name="company_name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_vn]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_vn]"
                       dataType="wstr"
                       length="50"
                       name="sector_name_vn" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_en]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_name_en]"
                       dataType="wstr"
                       length="50"
                       name="sector_name_en" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_group]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[sector_group]"
                       dataType="wstr"
                       length="50"
                       name="sector_group" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].ExternalColumns[risk_level]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Output].ExternalColumns[risk_level]"
                       dataType="wstr"
                       length="50"
                       name="risk_level" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output]"
+                  refId="Package\staging\csv nghành.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="65001"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -722,7 +1414,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\OLE DB Destination"
+              refId="Package\staging\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -746,7 +1438,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -779,113 +1471,113 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\SQLEXPRESS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\SQLEXPRESS]"
+                  refId="Package\staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[time]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[time]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="time"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[trade_date]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[trade_date]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[time]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[volume]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[volume]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="volume"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[volume]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[volume]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[volume]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[high]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[high]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="high"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[high_price]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[high_price]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[high]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[low]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[low]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="low"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[low_price]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[low_price]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[low]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[open]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[open]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="open"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[open_price]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[open_price]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[open]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[close]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[close]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="close"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[close_price]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[close_price]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[close]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[symbol ]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[symbol ]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="symbol "
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[symbol]"
-                      lineageId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[symbol]"
+                      lineageId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output].Columns[symbol ]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[trade_date]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[trade_date]"
                       dataType="dbDate"
                       name="trade_date" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[open_price]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[open_price]"
                       dataType="numeric"
                       name="open_price"
                       precision="18"
                       scale="4" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[high_price]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[high_price]"
                       dataType="numeric"
                       name="high_price"
                       precision="18"
                       scale="4" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[low_price]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[low_price]"
                       dataType="numeric"
                       name="low_price"
                       precision="18"
                       scale="4" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[close_price]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[close_price]"
                       dataType="numeric"
                       name="close_price"
                       precision="18"
                       scale="4" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[volume]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[volume]"
                       dataType="i8"
                       name="volume" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[symbol]"
+                      refId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[symbol]"
                       codePage="1252"
                       dataType="str"
                       length="10"
@@ -895,22 +1587,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -919,7 +1611,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\OLE DB Destination 1"
+              refId="Package\staging\OLE DB Destination 1"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -943,7 +1635,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -976,104 +1668,104 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\SQLEXPRESS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\SQLEXPRESS]"
+                  refId="Package\staging\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[staging]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ticker_key]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ticker_key]"
                       cachedCodepage="65001"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="ticker_key"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker_key]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker_key]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker_key]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ticker]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ticker]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="ticker"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[ticker]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[ticker]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[company_name]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[company_name]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="company_name"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[company_name]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[company_name]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[company_name]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[company_name]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_name_vn]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_name_vn]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="sector_name_vn"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_vn]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_vn]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_vn]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_name_en]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_name_en]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="sector_name_en"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_en]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_en]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_name_en]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_group]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[sector_group]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="sector_group"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_group]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_group]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[sector_group]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[risk_level]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[risk_level]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="risk_level"
-                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[risk_level]"
-                      lineageId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]" />
+                      externalMetadataColumnId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[risk_level]"
+                      lineageId="Package\staging\csv nghành.Outputs[Flat File Source Output].Columns[risk_level]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker_key]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker_key]"
                       dataType="i4"
                       name="ticker_key" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ticker]"
                       dataType="wstr"
                       length="10"
                       name="ticker" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[company_name]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[company_name]"
                       dataType="wstr"
                       length="200"
                       name="company_name" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_vn]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_vn]"
                       dataType="wstr"
                       length="100"
                       name="sector_name_vn" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_en]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_name_en]"
                       dataType="wstr"
                       length="100"
                       name="sector_name_en" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_group]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sector_group]"
                       dataType="wstr"
                       length="50"
                       name="sector_group" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[risk_level]"
+                      refId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[risk_level]"
                       dataType="wstr"
                       length="20"
                       name="risk_level" />
@@ -1082,22 +1774,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1108,15 +1800,15 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              refId="Package\staging.Paths[Flat File Source Output]"
+              endId="Package\staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\csv 2002-2025.Outputs[Flat File Source Output]" />
+              startId="Package\staging\csv nghành.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output1]"
-              endId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              refId="Package\staging.Paths[Flat File Source Output1]"
+              endId="Package\staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\csv nghành.Outputs[Flat File Source Output]" />
+              startId="Package\staging\csv 2002-2025.Outputs[Flat File Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1135,43 +1827,51 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="152,42.6666666666667"
-          Id="Package\Data Flow Task"
-          TopLeft="129.999994188547,98.799995288849" />
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\staging"
+          TopLeft="24.3749989103523,21.4499989771843" />
+        <NodeLayout
+          Size="126.666666666667,42.6666666666667"
+          Id="Package\Dim_Date"
+          TopLeft="193.7499913387,24.6999988222123" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Data Flow Task">
+    design-time-name="Package\staging">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="148,42.6666666666667"
-          Id="Package\Data Flow Task\csv 2002-2025"
-          TopLeft="12.9999996647239,17.8499994111061" />
+          Size="172,42.6666666666667"
+          Id="Package\staging\OLE DB Destination"
+          TopLeft="5.62499974854295,103.999995040894" />
         <NodeLayout
           Size="133.333333333334,42.6666666666667"
-          Id="Package\Data Flow Task\csv nghành"
-          TopLeft="166.874992540106,17.5499991631508" />
+          Id="Package\staging\csv nghành"
+          TopLeft="224.999989941716,16.8999991941452" />
         <NodeLayout
-          Size="172,42.6666666666667"
-          Id="Package\Data Flow Task\OLE DB Destination"
-          TopLeft="0.624999972060323,97.4999953508379" />
+          Size="148,42.6666666666667"
+          Id="Package\staging\csv 2002-2025"
+          TopLeft="17.3749994691462,17.8499994111061" />
+        <NodeLayout
+          Size="181.333333333334,42.6666666666667"
+          Id="Package\staging\OLE DB Destination 1"
+          TopLeft="206.249990779906,103.349995071888" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="86.8124998183921,60.5166660777728">
+          Id="Package\staging.Paths[Flat File Source Output]"
+          TopLeft="294.291657027478,59.5666658608119">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.9833292730651"
+              EndConnector="0,43.7833292110763"
               Start="0,0"
-              End="0,29.4833292730651">
+              End="0,36.2833292110763">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.4833292730651" />
+                    End="0,36.2833292110763" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1180,36 +1880,20 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="181.333333333334,42.6666666666667"
-          Id="Package\Data Flow Task\OLE DB Destination 1"
-          TopLeft="180.624991925433,96.8499953818323" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output1]"
-          TopLeft="233.541659206773,60.2166658298175">
+          Id="Package\staging.Paths[Flat File Source Output1]"
+          TopLeft="91.4999996088446,60.5166660777728">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="37.749999385327,36.6333295520148"
+              EndConnector="0,43.483328963121"
               Start="0,0"
-              End="37.749999385327,29.1333295520148">
+              End="0,35.983328963121">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.3166647760074" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.3166647760074"
-                    Point2="0,18.3166647760074"
-                    Point3="4,18.3166647760074" />
-                  <mssgle:LineSegment
-                    End="33.749999385327,18.3166647760074" />
-                  <mssgle:CubicBezierSegment
-                    Point1="33.749999385327,18.3166647760074"
-                    Point2="37.749999385327,18.3166647760074"
-                    Point3="37.749999385327,22.3166647760074" />
-                  <mssgle:LineSegment
-                    End="37.749999385327,29.1333295520148" />
+                    End="0,35.983328963121" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1222,7 +1906,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    design-time-name="Package\staging\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1235,7 +1919,123 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\OLE DB Destination 1">
+    design-time-name="Package\staging\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dim_Date">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Dim_Date\dữ liệu giao dich"
+          TopLeft="0.923076895567135,58.9999982416631" />
+        <NodeLayout
+          Size="149.333333333334,42.6666666666667"
+          Id="Package\Dim_Date\chiều thời gian"
+          TopLeft="535.346138949578,52.4999994933605" />
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\Dim_Date\Derived Column"
+          TopLeft="318.846144343798,52.999998420477" />
+        <EdgeLayout
+          Id="Package\Dim_Date.Paths[Derived Column Output]"
+          TopLeft="473.512811010465,74.0833322902521">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61.8333279391132,0"
+              Start="0,0"
+              End="54.3333279391132,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54.3333279391132,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Dim_Date\Sort"
+          TopLeft="182.423071650359,59.3461522414135" />
+        <EdgeLayout
+          Id="Package\Dim_Date.Paths[OLE DB Source Output]"
+          TopLeft="158.2564102289,80.5064085748716">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24.166661421458,0"
+              Start="0,0"
+              End="16.666661421458,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.666661421458,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dim_Date.Paths[Sort Output]"
+          TopLeft="281.089738317025,77.5064086642786">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.756406026773,0"
+              Start="0,0"
+              End="30.256406026773,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="30.256406026773,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Date\dữ liệu giao dich">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dim_Date\chiều thời gian">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
