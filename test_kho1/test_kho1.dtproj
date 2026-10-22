@@ -12,7 +12,7 @@
   <DataSourceViews />
   <DeploymentModelSpecificContent>
     <Manifest>
-      <SSIS:Project SSIS:ProtectionLevel="EncryptSensitiveWithUserKey" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
+      <SSIS:Project SSIS:ProtectionLevel="DontSaveSensitive" xmlns:SSIS="www.microsoft.com/SqlServer/SSIS">
         <SSIS:Properties>
           <SSIS:Property SSIS:Name="ID">{fb7a633f-92cd-44f6-b0a2-d7af0ce11f5f}</SSIS:Property>
           <SSIS:Property SSIS:Name="Name">test_kho1</SSIS:Property>
@@ -26,7 +26,6 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">VĂNTRỰC</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGwn2ZR75T0qhj1QcdfT9wgAAAAACAAAAAAAQZgAAAAEAACAAAACyAwJlfuSN5bn+W9V+w5EeizdrDADWZ0VcVQTEjmIqxgAAAAAOgAAAAAIAACAAAABOfqos0k4wpVPAn8AmbJADykKefF282nHrLjaApKyCFZAAAACDNFWgwYYNLPbSZ7Jt0BrFyIriAeMDPQeE+l3pCeaiDOA02DQotypjHz8fTCnaoGZc4K67iBisCQe52hsU5BDlbAzFs1PgOc5z7xAv8VSieauUslQ3KYksmqSviPRVJme+08zheU3OPdHya3UwhSS6sNC+CdVWABj2p9Tp+bMSPYFhJxPMbbAecxeHV3hjMxJAAAAAJQOu1L3fysOA0A9HJfy0nU73CBbFHPDmr3bdH9d4eiPExigBvaz3K6CxWAwb2EvJckT8ooch5OeF+YBS/h2clA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,14 +41,14 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D79A57CB-69FC-42D8-BDD1-6A2A8C1A3E78}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2006BDF7-37D3-47DC-9751-35B39316B7D5}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
                 <SSIS:Parameter SSIS:Name="CM.Flat File Connection Manager.AlwaysCheckForRowDelimiters">
@@ -762,7 +761,7 @@
         <ConnectionProviderMappings />
         <ConnectionSecurityMappings />
         <DatabaseStorageLocations />
-        <TargetServerVersion>SQLServer2022</TargetServerVersion>
+        <TargetServerVersion>SQLServer2025</TargetServerVersion>
         <AzureMode>false</AzureMode>
         <LinkedAzureTenantId />
         <LinkedAzureAccountId />
